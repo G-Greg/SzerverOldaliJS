@@ -1,0 +1,19 @@
+<%- include('header', {pagetitle: 'Jármű adatbázis'}) -%>
+<%- include('menu') -%>
+<div class="container">
+        <form action="/marka/edit/<%= marka._id %>" method="POST">
+            <h1><%= marka.marka_nev %> márka szerkesztése</h1>
+            <div class="card-body" style="background-color:#e2e2e2; border-radius: 5px;">
+                <div class="col-md-4">
+                    Kiválaszott márka szerkesztése:
+                    <input type="text" name="marka_nev" class="form-control" value="<%= marka.marka_nev %>">
+                    <br>
+                    <input type="submit" value="Szerkeszt" class="btn btn-primary" />
+                    
+                    <a href="/marka/del/<%= marka._id %>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                </div>
+            </div>
+            <br>
+            <br>
+            </form>
+<%- include('footer') -%>

@@ -1,0 +1,60 @@
+<%- include('header', {pagetitle: 'Jármű adatbázis'}) -%>
+<%- include('menu') -%>
+<div class="container">
+  <br>
+  <h2>Lista nézet</h2>
+  <form action="/marka" method="GET">
+    <br>
+    <h4>Keresés márka szerint</h4>
+    <div class="col-6">
+      Márka
+      <select id="marka_id" name="marka_id" class="form-select" aria-label="Default select example">
+        <script defer>
+          document.getElementById("marka_id").addEventListener("change", e => {
+            document.getElementById("marka_edit").href = "/marka/edit/" + e.target.selectedOptions[0].value;
+          });
+        </script>
+        <option selected disabled>Kérem válasszon</option>
+        <% markak.forEach(function(egyMarka){ %>
+        <option value="<%= egyMarka._id  %>"><%= egyMarka.marka_nev %></option>
+        <% }); %>
+        <!--    
+        <option>BMW</option>
+        <option>Ford</option>
+        <option>Honda</option>
+        <option>Nissan</option>
+        <option>Opel</option>
+        <option>Jeep</option>
+        <option>Tesla</option>
+        <option>Volvo</option>-->  
+      </select>
+      <br>
+      <input type="submit" value="Keresés" class="btn btn-primary" />
+      <a href="#" id="marka_edit" class="btn btn-success">Márka szerkesztése</a>
+      <br>
+      <br>
+    </div>
+  </form>
+
+  <table class="table table-striped" style="background-color: #ebebeb;">
+    <tr>
+      <th>Márka</th>
+      <th>Modell</th>
+      <th>Meghajtás</th>
+      <th>Szín</th>
+      <th>Állapot</th>
+      <th></th>
+    </tr>
+    <% cars.forEach(function(egyMarka){ %>
+    <tr>
+      <td> <%= egyMarka._carfam.marka_nev %></td>
+      <td> <%= egyMarka.modell %></td>
+      <td> <%= egyMarka.meghajtas %></td>
+      <td> <%= egyMarka.szin %></td>
+      <td> <%= egyMarka.allapot %></td>
+      <td><a href="/car/edit/<%= egyMarka._id %>"><i class="fas fa-pencil-alt"></i></a></td>
+    </tr>
+    <% }); %>
+  </table>
+</div>
+<%- include('footer') -%>

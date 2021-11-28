@@ -1,0 +1,64 @@
+<%- include('header', {pagetitle: 'Jármű adatbázis'}) -%>
+<%- include('menu') -%>
+
+<form action="/marka/new" method="POST">
+<div class="container">
+  <br>
+  <h2>Új hozzáadás</h2>
+  <br>
+  <div class="card-body" style="background-color:#e2e2e2; border-radius: 5px;">
+    <div class="col-md-4">
+      Márka hozzáadása:
+      <input type="text" name="marka_nev" class="form-control">
+      <br>
+      <input type="submit" value="Hozzáad" class="btn btn-primary"/>
+    </div>
+  </div>
+</form>
+<br>
+<br>
+
+
+
+<form action="/car/new" method="POST">
+    <div class="card-body" style="background-color:#e2e2e2; border-radius: 5px;">
+      <div class="col-md-3">
+        Melyik márkához:
+        <select name="marka_id" class="form-select" aria-label="Default select example">
+          <option selected disabled>Kérem válasszon</option>
+          <% markak.forEach(function(egyMarka){ %>
+            <option value="<%= egyMarka._id  %>"><%= egyMarka.marka_nev %></option>
+          <% }); %>
+        </select>
+      </div>
+      <br>
+      <div class="row g-3">
+        <div class="col">
+          Modell
+          <input type="text" name="modell" class="form-control" value="<%= (typeof car === 'undefined')? "" :car.modell %>">
+        </div>
+        <div class="col">
+          Meghajtás
+          <input type="text" name="meghajtas" class="form-control" value="<%= (typeof car === 'undefined')? "" :car.meghajtas %>">
+        </div>
+        <div class="col">
+          Szín
+          <input type="text" name="szin" class="form-control" value="<%= (typeof car === 'undefined')? "" :car.szin %>">
+        </div>
+        <div class="col">
+          Állapot
+          <input type="text" name="allapot" class="form-control" value="<%= (typeof car === 'undefined')? "" :car.allapot %>">
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <br>
+        <input type="submit" value="Hozzáad" class="btn btn-primary" />
+      </div>
+    </div>
+    <br>
+</div>
+</div>
+</form>
+
+<%- include('footer') -%>

@@ -1,0 +1,45 @@
+<%- include('header', {pagetitle: 'Jármű adatbázis' }) -%>
+<%- include('menu') -%>
+
+<div class="container">
+    <h1><%= car._carfam.marka_nev%> típus szerkesztése</h1>
+    
+    <form action="/car/edit/<%= car._id%>" method="POST">
+        <div class="card-body" style="background-color:#e2e2e2; border-radius: 5px;">
+            <div id="marka" class="col-md-3">
+                Márka:
+                <input type="text" class="form-control" disabled value="<%= car._carfam.marka_nev%>">
+                <input type="hidden" name="marka_id" value="<%= car._carfam._id%>">
+            </div>
+            <br>
+
+            <div id="edit">
+                <div class="row g-3">
+                    <div class="col">
+                        Modell
+                        <input type="text" name="modell" class="form-control" value="<%= car.modell%>">
+                    </div>
+                    <div class="col">
+                        Meghajtás
+                        <input type="text" name="meghajtas" class="form-control" value="<%= car.meghajtas%>">
+                    </div>
+                    <div class="col">
+                        Szín
+                        <input type="text" name="szin" class="form-control" value="<%= car.szin%>">
+                    </div>
+                    <div class="col">
+                        Állapot
+                        <input type="text" name="allapot" class="form-control" value="<%= car.allapot%>">
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Szerkeszt</button>
+            <a href="/car/del/<%= car._id%>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+        </div>
+</div>
+</form>
+
+</div>
+<%- include('footer') -%>
